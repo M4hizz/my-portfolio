@@ -255,7 +255,7 @@ function Future() {
               <RoadmapItem
                 title="FBLC 2026"
                 date="March 2026"
-                description="Future Business Leaders of America competitive event. Aiming to compete in Coding & Programming and achieve top placement with my teammates."
+                description="Future Business Leaders of Canada competitive event. Aiming to compete in Coding & Programming and achieve top placement with my teammates."
                 index={0}
                 isActive={activeIndex === 0}
               />
