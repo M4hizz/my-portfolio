@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+* {
+  cursor: none;
+  user-select: none;
+}
+
+/* Control scrolling at the document level, not on every element */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+/* Make Poppins the default font for the whole app */
+body,
+input,
+button,
+textarea,
+select {
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
