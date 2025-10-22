@@ -51,45 +51,50 @@ function RootApp() {
   );
 }
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      element: <AnimatedOutlet />,
+      children: [
+        {
+          path: "/",
+          element: (
+            <PageTransition>
+              <App />
+            </PageTransition>
+          ),
+        },
+        {
+          path: "/projects",
+          element: (
+            <PageTransition>
+              <Projects />
+            </PageTransition>
+          ),
+        },
+        {
+          path: "/skills",
+          element: (
+            <PageTransition>
+              <Skills />
+            </PageTransition>
+          ),
+        },
+        {
+          path: "/future",
+          element: (
+            <PageTransition>
+              <Future />
+            </PageTransition>
+          ),
+        },
+      ],
+    },
+  ],
   {
-    element: <AnimatedOutlet />,
-    children: [
-      {
-        path: "/",
-        element: (
-          <PageTransition>
-            <App />
-          </PageTransition>
-        ),
-      },
-      {
-        path: "/projects",
-        element: (
-          <PageTransition>
-            <Projects />
-          </PageTransition>
-        ),
-      },
-      {
-        path: "/skills",
-        element: (
-          <PageTransition>
-            <Skills />
-          </PageTransition>
-        ),
-      },
-      {
-        path: "/future",
-        element: (
-          <PageTransition>
-            <Future />
-          </PageTransition>
-        ),
-      },
-    ],
-  },
-]);
+    basename: "/my-portfolio",
+  }
+);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
