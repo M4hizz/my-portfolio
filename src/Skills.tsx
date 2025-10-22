@@ -29,21 +29,20 @@ const SkillSection = ({
       className="relative h-screen w-screen flex items-center justify-center snap-start snap-always overflow-hidden"
       data-index={index}
     >
-      {/* Background Image with Animation */}
-      <motion.div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${imageSrc})`,
-        }}
+      {/* Lazy-loaded background image (use <img> so browser can lazy load) */}
+      <motion.img
+        className="absolute inset-0 w-full h-full object-cover"
+        src={imageSrc}
+        alt={`${title} background`}
+        loading="lazy"
+        decoding="async"
+        style={{ willChange: "transform, opacity" }}
         animate={{
-          scale: [1, 1.05, 1],
+          // Subtle slow pulsing scale with very low work to reduce repaints
+          scale: [1, 1.02, 1],
+          opacity: [1, 0.98, 1],
         }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
-        }}
+        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
       />
 
       {/* Black Vignette Overlay with Pulse */}

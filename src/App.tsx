@@ -174,12 +174,7 @@ function App() {
               scale: 1.2,
             }}
           />
-          <img
-            id="mainimg"
-            src={mainImg}
-            alt=""
-            className="absolute h-full"
-          />
+          <img id="mainimg" src={mainImg} alt="" className="absolute h-full" />
           <motion.img
             id="backgroundimg"
             src={backgroundImg}

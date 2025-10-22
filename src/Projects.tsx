@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 
 // Import project images
 import rockyImg from "./assets/project-images/rocky.png";
+import WeatherImg from "./assets/project-images/weather.png";
 
 // Modal component
 const ProjectModal = ({
@@ -191,7 +192,7 @@ const Projects = () => {
             className="absolute grid grid-cols-3 grid-rows-2 gap-4 h-[70vh] w-[150vh] top-[50vh] left-[120vh] -translate-x-1/2 -translate-y-1/2"
           >
             <ProjectPage
-              image=""
+              image={WeatherImg}
               title="Weather App"
               dsc="Very simple yet functional weather app design."
             />
