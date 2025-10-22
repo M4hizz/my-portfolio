@@ -4,6 +4,9 @@ import Cursor from "./components/Cursor";
 import PurpleCursor from "./components/PurpleCursor";
 import Sidebar from "./components/Sidebar";
 
+// Import project images
+import rockyImg from "./assets/project-images/rocky.png";
+
 // Modal component
 const ProjectModal = ({
   image,
@@ -193,7 +196,7 @@ const Projects = () => {
               dsc="Very simple yet functional weather app design."
             />
             <ProjectPage
-              image="/src/assets/project-images/rocky.png"
+              image={rockyImg}
               title="Platformer"
               dsc="Introduction to events, calls, etc."
             />

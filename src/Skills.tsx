@@ -4,6 +4,12 @@ import Cursor from "./components/Cursor";
 import PurpleCursor from "./components/PurpleCursor";
 import Sidebar from "./components/Sidebar";
 
+// Import skill images
+import avatarImg from "./assets/skills-images/avatar.jpg";
+import demonSlayerImg from "./assets/skills-images/demon slayer.png";
+import spidermanImg from "./assets/skills-images/spiderman.jpg";
+import stadiumImg from "./assets/skills-images/stadium.jpeg";
+
 // Skill Section Component
 const SkillSection = ({
   title,
@@ -215,28 +221,28 @@ function Skills() {
       >
         <SkillSection
           title="Skills"
-          imageSrc="/src/assets/skills-images/avatar.jpg"
+          imageSrc={avatarImg}
           gradientFrom="#4a9eff"
           gradientTo="#00d4ff"
           index={0}
         />
         <SkillSection
           title="UI/UX Design"
-          imageSrc="/src/assets/skills-images/demon%20slayer.png"
+          imageSrc={demonSlayerImg}
           gradientFrom="#ff6b9d"
           gradientTo="#c9184a"
           index={1}
         />
         <SkillSection
           title="Frontend"
-          imageSrc="/src/assets/skills-images/spiderman.jpg"
+          imageSrc={spidermanImg}
           gradientFrom="#e63946"
           gradientTo="#1d3557"
           index={2}
         />
         <SkillSection
           title="Gamemaking"
-          imageSrc="/src/assets/skills-images/stadium.jpeg"
+          imageSrc={stadiumImg}
           gradientFrom="#38b000"
           gradientTo="#004b23"
           index={3}

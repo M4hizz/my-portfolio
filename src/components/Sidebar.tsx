@@ -2,6 +2,12 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ButtonNorm from "./ButtonNorm";
 
+// Import social assets
+import profileImg from "../assets/socials/profile.jpg";
+import instagramIcon from "../assets/socials/instagram.svg";
+import githubIcon from "../assets/socials/github.svg";
+import downloadIcon from "../assets/socials/download.svg";
+
 const SocialButton = ({
   icon,
   label,
@@ -91,7 +97,7 @@ const Sidebar = ({
           transition={{ duration: 0.3 }}
         >
           <img
-            src="/src/assets/socials/profile.jpg"
+            src={profileImg}
             alt="Profile"
             className="w-full h-full object-cover"
           />
@@ -100,17 +106,17 @@ const Sidebar = ({
         {/* Social Buttons */}
         <div className="flex flex-col gap-3 w-full">
           <SocialButton
-            icon="/src/assets/socials/instagram.svg"
+            icon={instagramIcon}
             label="Instagram"
             link="https://www.instagram.com/m4hi_zz/"
           />
           <SocialButton
-            icon="/src/assets/socials/github.svg"
+            icon={githubIcon}
             label="GitHub"
             link="https://github.com/M4hizz"
           />
           <SocialButton
-            icon="/src/assets/socials/download.svg"
+            icon={downloadIcon}
             label="Download Resume"
             link="/Mahin Patel - Resume.pdf"
           />

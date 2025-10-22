@@ -6,6 +6,21 @@ import ScrambleText from "./components/ScrambleText";
 import ButtonNorm from "./components/ButtonNorm";
 import Sidebar from "./components/Sidebar";
 
+// Import logos
+import javascriptLogo from "./assets/logos/javascript.svg";
+import typescriptLogo from "./assets/logos/typescript.svg";
+import reactLogo from "./assets/logos/react.svg";
+import tailwindLogo from "./assets/logos/tailwindcss.svg";
+import framerLogo from "./assets/logos/framer.svg";
+import pythonLogo from "./assets/logos/python.svg";
+import luaLogo from "./assets/logos/lua.svg";
+
+// Import character images
+import foregroundImg from "./assets/foreground.PNG";
+import diamImg from "./assets/diam.PNG";
+import mainImg from "./assets/main.PNG";
+import backgroundImg from "./assets/background.PNG";
+
 // Logo Item Component
 const LogoItem = ({ src, name }: { src: string; name: string }) => {
   return (
@@ -58,22 +73,13 @@ function App() {
 
           {/* Logos Section */}
           <div className="absolute top-[23vh] right-4 flex gap-6 items-center">
-            <LogoItem
-              src="/src/assets/logos/javascript.svg"
-              name="JavaScript"
-            />
-            <LogoItem
-              src="/src/assets/logos/typescript.svg"
-              name="TypeScript"
-            />
-            <LogoItem src="/src/assets/logos/react.svg" name="React" />
-            <LogoItem
-              src="/src/assets/logos/tailwindcss.svg"
-              name="Tailwind CSS"
-            />
-            <LogoItem src="/src/assets/logos/framer.svg" name="Framer Motion" />
-            <LogoItem src="/src/assets/logos/python.svg" name="Python" />
-            <LogoItem src="/src/assets/logos/lua.svg" name="Lua" />
+            <LogoItem src={javascriptLogo} name="JavaScript" />
+            <LogoItem src={typescriptLogo} name="TypeScript" />
+            <LogoItem src={reactLogo} name="React" />
+            <LogoItem src={tailwindLogo} name="Tailwind CSS" />
+            <LogoItem src={framerLogo} name="Framer Motion" />
+            <LogoItem src={pythonLogo} name="Python" />
+            <LogoItem src={luaLogo} name="Lua" />
           </div>
 
           <div
@@ -154,14 +160,14 @@ function App() {
         >
           <img
             id="foregroundimg"
-            src="/src/assets/foreground.PNG"
+            src={foregroundImg}
             alt=""
             className="absolute h-full"
           />
 
           <motion.img
             id="diamimg"
-            src="/src/assets/diam.PNG"
+            src={diamImg}
             alt=""
             className="absolute h-[22vh] top-[64vh] left-[42vh] z-10"
             whileHover={{
@@ -170,13 +176,13 @@ function App() {
           />
           <img
             id="mainimg"
-            src="/src/assets/main.PNG"
+            src={mainImg}
             alt=""
             className="absolute h-full"
           />
           <motion.img
             id="backgroundimg"
-            src="/src/assets/background.PNG"
+            src={backgroundImg}
             alt=""
             className="absolute h-full"
             animate={{

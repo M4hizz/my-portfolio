@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import amongUsImg from "../assets/among us.png";
 
 const Cursor = () => {
   const [prevPos, setPrevPos] = useState({ x: 0, y: 0 });
@@ -39,7 +40,7 @@ const Cursor = () => {
 
   return (
     <motion.img
-      src="/src/assets/among us.png"
+      src={amongUsImg}
       alt="cursor"
       className="w-10 fixed pointer-events-none"
       style={{
