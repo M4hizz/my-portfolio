@@ -67,9 +67,25 @@ function App() {
         <Cursor />
         <PurpleCursor />
         <div id="main area" className="absolute h-full w-full">
-          <h1 className="absolute text-white text-8xl w-fit right-0 m-4">
-            Mahin
-          </h1>
+          <motion.h1
+            className="absolute text-white text-8xl w-fit right-0 m-4"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.span
+              animate={{
+                textShadow: [
+                  "0 0 20px rgba(168, 85, 247, 0.5)",
+                  "0 0 40px rgba(236, 72, 153, 0.8)",
+                  "0 0 20px rgba(168, 85, 247, 0.5)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              Mahin
+            </motion.span>
+          </motion.h1>
 
           {/* Logos Section */}
           <div className="absolute top-[23vh] right-4 flex gap-6 items-center">

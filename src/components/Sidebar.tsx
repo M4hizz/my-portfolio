@@ -47,7 +47,7 @@ const Sidebar = ({
   return (
     <div
       id="left-panel"
-      className="absolute flex flex-col items-start top-[50%] -translate-y-1/2 text-white text-2xl w-[35vh] h-[80vh] p-5 mx-5"
+      className="absolute flex flex-col items-start top-[50%] -translate-y-1/2 text-white text-2xl w-[35vh] h-[80vh] p-5 mx-5 z-50"
     >
       <div
         id="sidebar"
@@ -88,7 +88,7 @@ const Sidebar = ({
 
       <div
         id="socials"
-        className="relative flex flex-1 flex-col items-start justify-start top-[0vh] text-white text-2xl w-[100%] p-5 mx-5 mt-5 bg-white/5 transparent backdrop-blur-xs rounded-3xl gap-4"
+        className="relative pointer-events-auto flex flex-1 flex-col items-start justify-start top-[0vh] text-white text-2xl w-[100%] p-5 mx-5 mt-5 bg-white/5 transparent backdrop-blur-xs rounded-3xl gap-4"
       >
         {/* Profile Picture */}
         <motion.div

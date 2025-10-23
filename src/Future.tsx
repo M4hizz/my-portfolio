@@ -234,7 +234,7 @@ function Future() {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              Future
+              Mahin
             </motion.span>
           </motion.h1>
 
