@@ -121,19 +121,15 @@ function Future() {
             <motion.div
               key={`v-${i}`}
               className="absolute h-full w-[2px] bg-gradient-to-b from-transparent via-purple-500 to-transparent"
-              style={{ left: `${pos}%` }}
+              style={{ left: `${pos}%`, willChange: "opacity, transform" }}
               animate={{
-                opacity: [0.3, 0.7, 0.3],
-                boxShadow: [
-                  "0 0 10px rgba(168, 85, 247, 0.5)",
-                  "0 0 30px rgba(168, 85, 247, 1)",
-                  "0 0 10px rgba(168, 85, 247, 0.5)",
-                ],
+                // Only animate opacity to reduce paint cost
+                opacity: [0.25, 0.6, 0.25],
               }}
               transition={{
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
-                delay: i * 0.5,
+                delay: i * 0.6,
                 ease: "easeInOut",
               }}
             />
@@ -144,19 +140,14 @@ function Future() {
             <motion.div
               key={`h-${i}`}
               className="absolute w-full h-[2px] bg-gradient-to-r from-transparent via-pink-500 to-transparent"
-              style={{ top: `${pos}%` }}
+              style={{ top: `${pos}%`, willChange: "opacity, transform" }}
               animate={{
-                opacity: [0.3, 0.7, 0.3],
-                boxShadow: [
-                  "0 0 10px rgba(236, 72, 153, 0.5)",
-                  "0 0 30px rgba(236, 72, 153, 1)",
-                  "0 0 10px rgba(236, 72, 153, 0.5)",
-                ],
+                opacity: [0.25, 0.6, 0.25],
               }}
               transition={{
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
-                delay: i * 0.5 + 0.3,
+                delay: i * 0.6 + 0.2,
                 ease: "easeInOut",
               }}
             />
@@ -170,14 +161,15 @@ function Future() {
               rotate: "45deg",
               left: "-50%",
               top: "50%",
-              filter: "blur(2px)",
+              filter: "blur(1px)",
+              willChange: "transform, opacity",
             }}
             animate={{
               left: ["-50%", "100%"],
-              opacity: [0, 1, 0],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: 4,
+              duration: 5,
               repeat: Infinity,
               ease: "linear",
             }}
