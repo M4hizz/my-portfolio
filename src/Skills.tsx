@@ -160,7 +160,7 @@ function Skills() {
 
     sections.forEach((s) => observer.observe(s));
 
-    // Optimized wheel event handler with better throttling
+    // Optimized wheel/trackpad handler - works for both scroll wheel and trackpad swipes
     const handleWheel = (e: WheelEvent) => {
       // Block if currently scrolling
       if (isScrollingRef.current) {
@@ -169,12 +169,15 @@ function Skills() {
       }
 
       const delta = e.deltaY;
-      // Increased threshold to ignore accidental small scrolls
-      if (Math.abs(delta) < 20) return;
+
+      // Lower threshold to catch trackpad swipes (which have smaller deltaY values)
+      // Trackpad swipes typically have deltaY between 1-50, scroll wheels 100+
+      if (Math.abs(delta) < 1) return;
 
       e.preventDefault();
       isScrollingRef.current = true;
 
+      // Normalize direction (trackpad and wheel both use positive=down, negative=up)
       let nextIndex = activeIndex;
       if (delta > 0 && activeIndex < sections.length - 1) {
         nextIndex = activeIndex + 1;
@@ -187,10 +190,10 @@ function Skills() {
         container.scrollTo({ top: target.offsetTop, behavior: "smooth" });
       }
 
-      // Increased timeout for smoother transitions
+      // Timeout prevents rapid successive scrolls
       setTimeout(() => {
         isScrollingRef.current = false;
-      }, 1000);
+      }, 800);
     };
 
     container.addEventListener("wheel", handleWheel, { passive: false });
