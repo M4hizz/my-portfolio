@@ -118,7 +118,7 @@ const Sidebar = ({
           <SocialButton
             icon={downloadIcon}
             label="Download Resume"
-            link="/Mahin Patel - Resume.pdf"
+            link="/my-portfolio/Mahin Patel - Resume.pdf"
           />
         </div>
       </div>

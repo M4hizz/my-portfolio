@@ -4,13 +4,13 @@ import Cursor from "./components/Cursor";
 import PurpleCursor from "./components/PurpleCursor";
 import Sidebar from "./components/Sidebar";
 
-// Import skill images
-import avatarImg from "./assets/skills-images/avatar.jpg";
-import demonSlayerImg from "./assets/skills-images/demon slayer.png";
-import spidermanImg from "./assets/skills-images/spiderman.jpg";
-import stadiumImg from "./assets/skills-images/stadium.jpeg";
+// Import optimized skill images (compressed and resized to 1920x1080)
+import avatarImg from "./assets/skills-images-optimized/avatar.jpg";
+import demonSlayerImg from "./assets/skills-images-optimized/demon slayer.jpg";
+import spidermanImg from "./assets/skills-images-optimized/spiderman.jpg";
+import stadiumImg from "./assets/skills-images-optimized/stadium.jpg";
 
-// Skill Section Component
+// Skill Section Component with progressive loading
 const SkillSection = ({
   title,
   imageSrc,
@@ -24,25 +24,45 @@ const SkillSection = ({
   gradientTo: string;
   index: number;
 }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <section
-      className="relative h-screen w-screen flex items-center justify-center snap-start snap-always overflow-hidden"
+      className="relative h-screen w-screen flex items-center justify-center snap-start snap-always overflow-hidden bg-black"
       data-index={index}
     >
-      {/* Lazy-loaded background image (use <img> so browser can lazy load) */}
+      {/* Blur placeholder while loading */}
+      {!imageLoaded && (
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black animate-pulse"
+          style={{
+            backgroundImage: `linear-gradient(135deg, ${gradientFrom}15 0%, ${gradientTo}10 100%)`,
+          }}
+        />
+      )}
+
+      {/* Lazy-loaded background image */}
       <motion.img
         className="absolute inset-0 w-full h-full object-cover"
         src={imageSrc}
         alt={`${title} background`}
         loading="lazy"
         decoding="async"
-        style={{ willChange: "transform, opacity" }}
-        animate={{
-          // Subtle slow pulsing scale with very low work to reduce repaints
-          scale: [1, 1.02, 1],
-          opacity: [1, 0.98, 1],
+        onLoad={() => setImageLoaded(true)}
+        style={{
+          willChange: "transform, opacity",
+          opacity: imageLoaded ? 1 : 0,
         }}
-        transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+        animate={{
+          scale: imageLoaded ? [1, 1.02, 1] : 1,
+          opacity: imageLoaded ? [1, 0.98, 1] : 0,
+        }}
+        transition={{
+          scale: { duration: 24, repeat: Infinity, ease: "linear" },
+          opacity: imageLoaded
+            ? { duration: 24, repeat: Infinity, ease: "linear" }
+            : { duration: 0.6 },
+        }}
       />
 
       {/* Black Vignette Overlay with Pulse */}
@@ -140,15 +160,17 @@ function Skills() {
 
     sections.forEach((s) => observer.observe(s));
 
-    // Wheel event handler for single-scroll navigation
+    // Optimized wheel event handler with better throttling
     const handleWheel = (e: WheelEvent) => {
+      // Block if currently scrolling
       if (isScrollingRef.current) {
         e.preventDefault();
         return;
       }
 
       const delta = e.deltaY;
-      if (Math.abs(delta) < 10) return; // Ignore tiny scrolls
+      // Increased threshold to ignore accidental small scrolls
+      if (Math.abs(delta) < 20) return;
 
       e.preventDefault();
       isScrollingRef.current = true;
@@ -165,9 +187,10 @@ function Skills() {
         container.scrollTo({ top: target.offsetTop, behavior: "smooth" });
       }
 
+      // Increased timeout for smoother transitions
       setTimeout(() => {
         isScrollingRef.current = false;
-      }, 800);
+      }, 1000);
     };
 
     container.addEventListener("wheel", handleWheel, { passive: false });

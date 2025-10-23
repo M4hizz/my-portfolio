@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 const PurpleCursor = () => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isClicked, setIsClicked] = useState(false);
   const [isHoveringSelectable, setIsHoveringSelectable] = useState(false);
 
+  // Use motion values for instant position updates (no spring lag)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      // Instant position update - no lag
+      mouseX.set(e.clientX - 10);
+      mouseY.set(e.clientY - 10);
 
-      // Detect if hovered element is "selectable"
+      // Check if hovering over any clickable element (including nested elements)
       const target = e.target as HTMLElement;
-      if (
-        target.tagName === "BUTTON" ||
-        target.tagName === "A" ||
-        target.tagName === "INPUT" ||
-        target.getAttribute("data-cursor-selectable") === "true"
-      ) {
-        setIsHoveringSelectable(true);
-      } else {
-        setIsHoveringSelectable(false);
-      }
+      const clickable = target.closest(
+        'button, a, [data-cursor-selectable="true"], [role="button"]'
+      );
+
+      setIsHoveringSelectable(!!clickable);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
   useEffect(() => {
     const handleMouseDown = () => setIsClicked(true);
@@ -43,19 +43,19 @@ const PurpleCursor = () => {
     <motion.div
       className="fixed top-0 left-0 w-5 h-5 rounded-full pointer-events-none z-[9999]"
       style={{
-        x: mousePos.x - 10,
-        y: mousePos.y - 10,
+        x: mouseX,
+        y: mouseY,
       }}
       animate={{
-        scale: isClicked ? 0.7 : 1,
+        scale: isClicked ? 0.7 : isHoveringSelectable ? 1.3 : 1,
         backgroundColor: isHoveringSelectable ? "#d8b4fe" : "#7e22ce",
         boxShadow: isHoveringSelectable
-          ? "0 0 15px 8px rgba(168, 85, 247, 0.1)"
+          ? "0 0 20px 10px rgba(168, 85, 247, 0.6)"
           : isClicked
           ? "0 0 15px 5px rgba(168, 85, 247, 1)"
           : "0 0 0px rgba(0,0,0,0)",
       }}
-      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+      transition={{ type: "spring", stiffness: 600, damping: 30, mass: 0.3 }}
     />
   );
 };
